@@ -1,10 +1,10 @@
 {
   "scripts": {
-    "install": "concurrently \"npm install --prefix ./frontend\" \"dotnet restore ./backend/backend.csproj\" \"dotnet restore ./backend/backend.Tests/backend.Tests.csproj\"",
+    "install": "concurrently \"npm install --prefix ./frontend\" \"dotnet restore ./backend/backend.csproj\"",
     "start": "concurrently \"npm start --prefix ./frontend\" \"dotnet watch run --project ./backend/backend.csproj\"",
     "test": "concurrently \"dotnet restore ./backend/backend.Tests/backend.Tests.csproj\" \"dotnet test ./backend/backend.Tests\""
   },
-"devDependencies": {
-  "concurrently": "^9.1.1"
-}
+  "devDependencies": {
+    "concurrently": "^9.1.1"
+  }
 }
