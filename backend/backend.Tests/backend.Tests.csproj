@@ -8,9 +8,6 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <BaseIntermediateOutputPath>..\..\bin\Debug\net8.0\</BaseIntermediateOutputPath>
-    <OutputPath>..\..\..\bin\</OutputPath>
-
   </PropertyGroup>
 
   <ItemGroup>
