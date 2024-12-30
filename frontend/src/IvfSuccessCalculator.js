@@ -72,23 +72,15 @@ const IvfSuccessCalculator = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const dataToSubmit = {
-      ...formData,
-      heightInCm: isMetricUnits
-        ? formData.heightInCm
-        : convertFeetInchesToCm(formData.feet, formData.inches),
-      weightInKg: isMetricUnits
-        ? formData.weightInKg
-        : convertLbsToKg(formData.weightInLbs),
-    };
-
     try {
       const response = await fetch(
         "http://localhost:5057/api/IVFSuccessCalculator",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(dataToSubmit),
+          body: JSON.stringify({
+            ...formData,
+          }),
         }
       );
 
