@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "install": "concurrently \"npm install --prefix ./frontend\" \"dotnet restore ./backend/backend.csproj\"",
+    "start": "concurrently \"npm start --prefix ./frontend\" \"dotnet run --project ./backend/backend.csproj\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.1"
+  }
+}
