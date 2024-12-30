@@ -220,7 +220,9 @@ const IvfSuccessCalculator = () => {
                   type="number"
                   name="inches"
                   value={
-                    formData.inches % 1 === 0
+                    formData.inches === ""
+                      ? ""
+                      : formData.inches % 1 === 0
                       ? Number(formData.inches).toFixed(0)
                       : Number(formData.inches).toFixed(2)
                   }
