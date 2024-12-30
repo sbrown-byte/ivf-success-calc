@@ -16,7 +16,6 @@ public class CalculateSuccessRateServiceTests
         _mockEnv = new Mock<IWebHostEnvironment>();
         _service = new CalculateSuccessRateService(_mockCSVReader.Object, _mockEnv.Object);
 
-        var filePath = "some/fake/path/ivf_success_formulas.csv";
         _mockEnv.Setup(env => env.ContentRootPath).Returns("some/fake/path");
 
         var formulaRows = new List<FileInput>
