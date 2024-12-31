@@ -188,7 +188,13 @@ const IvfSuccessCalculator = () => {
                 <input
                   type="number"
                   name="weightInLbs"
-                  value={formData.weightInLbs}
+                  value={
+                    formData.weightInLbs === ""
+                      ? ""
+                      : formData.weightInLbs % 1 === 0
+                      ? Number(formData.weightInLbs).toFixed(0)
+                      : Number(formData.weightInLbs).toFixed(2)
+                  }
                   onChange={handleChange}
                   required
                   step="0.01"
