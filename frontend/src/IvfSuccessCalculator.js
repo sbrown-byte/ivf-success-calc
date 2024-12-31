@@ -142,7 +142,6 @@ const IvfSuccessCalculator = () => {
             value={formData.age}
             onChange={handleChange}
             required
-            step="0.01"
             min="0"
           />
         </div>
