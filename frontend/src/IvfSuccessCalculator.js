@@ -32,11 +32,11 @@ const IvfSuccessCalculator = () => {
   const convertKgToLbs = (kg) => (parseFloat(kg) || 0) * 2.20462;
   const convertFeetInchesToCm = (feet, inches) =>
     (parseFloat(feet) || 0) * 30.48 + (parseFloat(inches) || 0) * 2.54;
+
   const convertCmToFeetInches = (cm) => {
     const totalInches = (parseFloat(cm) || 0) / 2.54;
     const feet = Math.floor(totalInches / 12);
     let inches = totalInches % 12;
-
     inches = Math.round(inches * 100) / 100;
     return { feet, inches };
   };
@@ -54,15 +54,13 @@ const IvfSuccessCalculator = () => {
 
       if (name === "weightInLbs" && !isMetricUnits) {
         updatedData.weightInKg =
-          parseFloat(value) > 0
-            ? parseFloat(convertLbsToKg(value).toFixed(2))
-            : "";
+          parseFloat(value) > 0 ? convertLbsToKg(value) : "";
       } else if (name === "weightInKg" && isMetricUnits) {
         updatedData.weightInLbs =
-          parseFloat(value) > 0
-            ? parseFloat(convertKgToLbs(value).toFixed(2))
-            : "";
-      } else if ((name === "feet" || name === "inches") && !isMetricUnits) {
+          parseFloat(value) > 0 ? convertKgToLbs(value) : "";
+      }
+
+      if ((name === "feet" || name === "inches") && !isMetricUnits) {
         updatedData.heightInCm =
           updatedData.feet && updatedData.inches
             ? convertFeetInchesToCm(updatedData.feet, updatedData.inches)
@@ -171,7 +169,13 @@ const IvfSuccessCalculator = () => {
                 <input
                   type="number"
                   name="weightInKg"
-                  value={formData.weightInKg}
+                  value={
+                    formData.weightInKg === ""
+                      ? ""
+                      : formData.weightInKg % 1 === 0
+                      ? Number(formData.weightInKg).toFixed(0)
+                      : Number(formData.weightInKg).toFixed(2)
+                  }
                   onChange={handleChange}
                   required
                   step="0.01"
@@ -299,7 +303,7 @@ const IvfSuccessCalculator = () => {
         <div className="calculate-container">
           <button type="submit">Calculate</button>
           {successRate && (
-            <h3 className="success-rate">Chances of Sucess: {successRate}%</h3>
+            <h3 className="success-rate">Chances of Success: {successRate}%</h3>
           )}
         </div>
       </form>
