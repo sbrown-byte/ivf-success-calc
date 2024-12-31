@@ -35,8 +35,10 @@ const IvfSuccessCalculator = () => {
   const convertCmToFeetInches = (cm) => {
     const totalInches = (parseFloat(cm) || 0) / 2.54;
     const feet = Math.floor(totalInches / 12);
-    const inches = totalInches % 12;
-    return { feet, inches: inches.toFixed(2) };
+    let inches = totalInches % 12;
+
+    inches = Math.round(inches * 100) / 100;
+    return { feet, inches };
   };
 
   const handleChange = (e) => {
