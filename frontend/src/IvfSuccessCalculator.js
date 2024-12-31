@@ -53,18 +53,23 @@ const IvfSuccessCalculator = () => {
       };
 
       if (name === "weightInLbs" && !isMetricUnits) {
-        updatedData.weightInKg = convertLbsToKg(value).toFixed(2);
+        updatedData.weightInKg =
+          parseFloat(value) > 0 ? convertLbsToKg(value).toFixed(2) : "";
       } else if (name === "weightInKg" && isMetricUnits) {
-        updatedData.weightInLbs = convertKgToLbs(value).toFixed(2);
+        updatedData.weightInLbs =
+          parseFloat(value) > 0 ? convertKgToLbs(value).toFixed(2) : "";
       } else if ((name === "feet" || name === "inches") && !isMetricUnits) {
-        updatedData.heightInCm = convertFeetInchesToCm(
-          updatedData.feet,
-          updatedData.inches
-        ).toFixed(2);
+        updatedData.heightInCm =
+          updatedData.feet && updatedData.inches
+            ? convertFeetInchesToCm(
+                updatedData.feet,
+                updatedData.inches
+              ).toFixed(2)
+            : "";
       } else if (name === "heightInCm" && isMetricUnits) {
         const { feet, inches } = convertCmToFeetInches(value);
         updatedData.feet = feet;
-        updatedData.inches = inches;
+        updatedData.inches = inches.toFixed(2);
       }
 
       return updatedData;

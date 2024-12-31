@@ -6,29 +6,8 @@ namespace backend.Models
         public bool PreviouslyAttemptedIVF { get; set; }
         public bool ReasonForInfertilityKnown { get; set; }
         public int Age { get; set; }
-        private double _weightInLbs;
-        private double _weightInKg;
-        public double WeightInLbs
-        {
-            get => _weightInLbs;
-            set
-            {
-                _weightInLbs = value;
-                _weightInKg = LbsToKg(value);
-            }
-        }
-
-        public double WeightInKg
-        {
-            get => _weightInKg;
-            set
-            {
-                _weightInKg = value;
-                _weightInLbs = KgToLbs(value);
-            }
-        }
-        private double KgToLbs(double kg) => Math.Round(kg * 2.20462, 2);
-        private double LbsToKg(double lbs) => Math.Round(lbs / 2.20462, 2);
+        public double WeightInLbs { get; set; }
+        public double WeightInKg { get; set; }
         public int Feet { get; set; }
         public double Inches { get; set; }
         public double HeightInCm { get; set; }
@@ -39,9 +18,9 @@ namespace backend.Models
                 ? HeightInCm / 2.54
                 : (Feet * 12) + Inches;
 
-            if (_weightInLbs > 0 && heightInInches > 0)
+            if (WeightInLbs > 0 && heightInInches > 0)
             {
-                return Math.Round(_weightInLbs / Math.Pow(heightInInches, 2) * 703, 2);
+                return Math.Round(WeightInLbs / Math.Pow(heightInInches, 2) * 703, 2);
             }
             return 0;
         }
